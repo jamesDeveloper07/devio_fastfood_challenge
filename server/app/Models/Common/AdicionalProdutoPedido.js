@@ -8,6 +8,10 @@ class AdicionalProdutoPedido extends Model {
     return 'common.adicionais_produto_pedido'
   }
 
+  static get updatedAtColumn() {
+    return null
+  }
+
   produtoPedido() {
     return this.belongsTo('App/Models/Common/ProdutoPedido')
   }

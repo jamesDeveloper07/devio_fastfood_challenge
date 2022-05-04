@@ -29,7 +29,12 @@ Route.group(() => {
   //forma pagamento
   Route.get('/forma_pagamento', 'Common/FormaPagamentoController.index');
 
-
-
+  //pedido
+  Route.get('/pedido', 'Common/PedidoController.index');
+  Route.get('/pedido/:id', 'Common/PedidoController.show');
+  Route.post('/pedido', 'Common/PedidoController.store').middleware(['auth:jwt']);
+  Route.put('/pedido/:id/avancar', 'Common/PedidoController.avancar').middleware(['auth:jwt']);
+  Route.put('/pedido/:id/cancelar', 'Common/PedidoController.cancelar').middleware(['auth:jwt']);
+  Route.put('/pedido/:id/deletar', 'Common/PedidoController.deletar').middleware(['auth:jwt']);
 
 }).prefix('/common');

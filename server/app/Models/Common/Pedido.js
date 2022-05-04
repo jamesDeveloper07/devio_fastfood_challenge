@@ -12,6 +12,10 @@ class Pedido extends Model {
     return this.hasMany('App/Models/Common/ProdutoPedido')
   }
 
+  formasPagamento() {
+    return this.hasMany('App/Models/Common/FormaPagamentoPedido')
+  }
+
 }
 
 module.exports = Pedido
