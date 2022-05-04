@@ -17,7 +17,8 @@ class UserSchema extends Schema {
   }
 
   down () {
-    this.withSchema('security').drop('users')
+    this.withSchema('security').drop('users')	
+    this.raw(`DROP SCHEMA IF EXISTS security`)
   }
 }
 
