@@ -10,7 +10,8 @@ class PermissionUserTableSchema extends Schema {
       table.foreign('permission_id').references('id').on('permissions').onDelete('cascade')
       table.integer('user_id').unsigned().index()
       table.foreign('user_id').references('id').on('security.users').onDelete('cascade')
-      table.timestamps()
+      table.timestamp('created_at').defaultTo(this.fn.now()).notNullable()
+      table.timestamp('updated_at').defaultTo(this.fn.now()).notNullable()
     })
   }
 

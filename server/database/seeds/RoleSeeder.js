@@ -16,29 +16,29 @@ const Role = use('Adonis/Acl/Role')
 
 class RoleSeeder {
   async run () {
-    const roleAdministrador = new Role()
-    roleAdministrador.name = 'Administrador'
-    roleAdministrador.slug = 'administrador'
-    roleAdministrador.description = 'privilégios de administrador'
-    await roleAdministrador.save()
+    const roleAdministrador = await Role.create({
+      name: 'Administrador',
+      slug: 'administrador',
+      description: 'privilégios de administrador'
+    })
 
-    const roleAtendente = new Role()
-    roleAdministrador.name = 'Atendente'
-    roleAdministrador.slug = 'atendente'
-    roleAdministrador.description = 'privilégios de atendente'
-    await roleAtendente.save()
+    const roleAtendente = await Role.create({
+      name: 'Atendente',
+      slug: 'atendente',
+      description: 'privilégios de atendente'
+    })
 
-    const roleCozinheiro = new Role()
-    roleAdministrador.name = 'Cozinheiro'
-    roleAdministrador.slug = 'cozinheiro'
-    roleAdministrador.description = 'privilégios de cozinheiro'
-    await roleCozinheiro.save()
+    const roleCozinheiro = await Role.create({
+      name: 'Cozinheiro',
+      slug: 'cozinheiro',
+      description: 'privilégios de cozinheiro'
+    })
 
-    const roleEntregador = new Role()
-    roleAdministrador.name = 'Entregador'
-    roleAdministrador.slug = 'entregador'
-    roleAdministrador.description = 'privilégios de entregador'
-    await roleEntregador.save()
+    const roleEntregador = await Role.create({
+      name: 'Entregador',
+      slug: 'entregador',
+      description: 'privilégios de entregador'
+    })
   }
 }
 

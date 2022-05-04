@@ -18,7 +18,8 @@ class RoleUserTableSchema extends Schema {
         .inTable('security.users')
         .notNullable()
         .onDelete('cascade')
-      table.timestamps()
+        table.timestamp('created_at').defaultTo(this.fn.now()).notNullable()
+        table.timestamp('updated_at').defaultTo(this.fn.now()).notNullable()
     })
   }
 
