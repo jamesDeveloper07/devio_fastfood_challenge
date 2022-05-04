@@ -12,8 +12,8 @@ class Categoria extends Model {
     return this.hasMany('App/Models/Common/Produto')
   }
 
-  acompanhamentos() {
-    return this.hasMany('App/Models/Common/Acompanhamento')
+  adicionais() {
+    return this.hasMany('App/Models/Common/Adicional')
   }
 
 }

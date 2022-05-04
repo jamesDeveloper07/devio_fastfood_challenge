@@ -11,7 +11,7 @@ class FormasPagamentoSchema extends Schema {
       table
         .enu('status', ['ativo', 'inativo'])
         .notNullable()
-        .comment('Coluna referente ao status do acompanhamento, que pode estar ativo ou inativo')
+        .comment('Coluna referente ao status do pagamento, que pode estar ativo ou inativo')
       table.timestamp('created_at').notNullable().defaultTo(this.fn.now())
       table.timestamp('updated_at').notNullable().defaultTo(this.fn.now())
       table.timestamp('deleted_at')
