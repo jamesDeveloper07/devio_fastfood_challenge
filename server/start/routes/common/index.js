@@ -15,7 +15,21 @@
 const Route = use('Route');
 
 Route.group(() => {
+  //categoria
   Route.get('/categoria', 'Common/CategoriaController.index');
+
+  //produto
+  Route.get('/produto', 'Common/ProdutoController.index');
+  Route.get('/produto/getById', 'Common/ProdutoController.getById');
+
+  //adicional
+  Route.get('/adicional', 'Common/AdicionalController.index');
+  Route.get('/adicional/getById', 'Common/AdicionalController.getById');
+
+  //forma pagamento
   Route.get('/forma_pagamento', 'Common/FormaPagamentoController.index');
+
+
+
 
 }).prefix('/common');
