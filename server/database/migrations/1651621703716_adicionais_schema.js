@@ -3,10 +3,10 @@
 /** @type {import('@adonisjs/lucid/src/Schema')} */
 const Schema = use('Schema')
 
-class AcompanhamentosSchema extends Schema {
+class AdicionaisSchema extends Schema {
 
   up() {
-    this.withSchema('common').create('acompanhamentos', (table) => {
+    this.withSchema('common').create('adicionais', (table) => {
       table.increments()
       table.string('nome', 200).notNullable()
       table.string('descricao', 500).notNullable()
@@ -15,7 +15,7 @@ class AcompanhamentosSchema extends Schema {
       table
         .enu('status', ['ativo', 'inativo'])
         .notNullable()
-        .comment('Coluna referente ao status do acompanhamento, que pode estar ativo ou inativo')
+        .comment('Coluna referente ao status do adicional, que pode estar ativo ou inativo')
       table.timestamp('created_at').notNullable().defaultTo(this.fn.now())
       table.timestamp('updated_at').notNullable().defaultTo(this.fn.now())
       table.timestamp('deleted_at')
@@ -24,9 +24,9 @@ class AcompanhamentosSchema extends Schema {
   }
 
   down() {
-    this.withSchema('common').drop('acompanhamentos')
+    this.withSchema('common').drop('adicionais')
   }
 
 }
 
-module.exports = AcompanhamentosSchema
+module.exports = AdicionaisSchema

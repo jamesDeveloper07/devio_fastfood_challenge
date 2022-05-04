@@ -34,6 +34,12 @@ class CategoriaSeeder {
       status: 'ativo'
     })
 
+    const Bebidas = await Categoria.create({
+      nome: 'Bebidas',
+      descricao: 'Maravilhosas bebidas, deliciosas e refrescantes.',
+      status: 'ativo'
+    })
+
     const Sobremesas = await Categoria.create({
       nome: 'Sobremesas',
       descricao: 'Delíciosas sobremesas, para fechar com chave de ouro.',

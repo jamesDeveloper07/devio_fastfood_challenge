@@ -1,5 +1,3 @@
-'use strict'
-
 /*
 |--------------------------------------------------------------------------
 | Routes
@@ -14,14 +12,10 @@
 */
 
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
-const Route = use('Route')
-require("./common");
-require("./security");
+const Route = use('Route');
 
-Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' }
-})
+Route.group(() => {
+  Route.get('/categoria', 'Common/CategoriaController.index');
+  Route.get('/forma_pagamento', 'Common/FormaPagamentoController.index');
 
-Route.get('/app', 'AppController.index').middleware(["auth:jwt"]);
-Route.get('/app_role_admin', 'AppController.roleAdminValidation').middleware(['auth:jwt', 'is:(administrador)'])
-Route.get('/app_role_cozin', 'AppController.roleCozinValidation').middleware(['auth:jwt', 'is:(administrador or cozinheiro)'])
+}).prefix('/common');

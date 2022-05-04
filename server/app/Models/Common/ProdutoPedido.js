@@ -16,8 +16,8 @@ class ProdutoPedido extends Model {
     return this.belongsTo('App/Models/Common/Produto')
   }
 
-  acompanhamentos() {
-    return this.hasMany('App/Models/Common/AcompanhamentoProdutoPedido')
+  adicionais() {
+    return this.hasMany('App/Models/Common/AdicionalProdutoPedido')
   }
 
 }
