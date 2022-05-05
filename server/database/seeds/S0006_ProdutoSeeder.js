@@ -27,6 +27,7 @@ class ProdutoSeeder {
       descricao: 'Delicioso hambúrguer 01.',
       categoria_id: catHamburgueres.id,
       preco: 20.10,
+      image_url: 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/10/Hamburguer-500x500.jpg',
       status: 'ativo'
     })
 
@@ -35,6 +36,7 @@ class ProdutoSeeder {
       descricao: 'Delicioso hambúrguer 02.',
       categoria_id: catHamburgueres.id,
       preco: 20.20,
+      image_url: 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/10/Hamburguer-500x500.jpg',
       status: 'ativo'
     })
 
@@ -43,6 +45,7 @@ class ProdutoSeeder {
       descricao: 'Delicioso hambúrguer 03.',
       categoria_id: catHamburgueres.id,
       preco: 20.30,
+      image_url: 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/10/Hamburguer-500x500.jpg',
       status: 'ativo'
     })
 
@@ -51,6 +54,7 @@ class ProdutoSeeder {
       descricao: 'Delicioso hambúrguer 04.',
       categoria_id: catHamburgueres.id,
       preco: 20.40,
+      image_url: 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/10/Hamburguer-500x500.jpg',
       status: 'ativo'
     })
 
@@ -59,6 +63,7 @@ class ProdutoSeeder {
       descricao: 'Delicioso hambúrguer 05.',
       categoria_id: catHamburgueres.id,
       preco: 20.50,
+      image_url: 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/10/Hamburguer-500x500.jpg',
       status: 'ativo'
     })
 
@@ -73,6 +78,7 @@ class ProdutoSeeder {
       descricao: 'Delicioso Combo 01.',
       categoria_id: catCombos.id,
       preco: 30.10,
+      image_url: 'https://riomarrecife.com.br/recife/2021/08/combo-double-crunch.jpg',
       status: 'ativo'
     })
 
@@ -81,6 +87,7 @@ class ProdutoSeeder {
       descricao: 'Delicioso Combo 02.',
       categoria_id: catCombos.id,
       preco: 30.20,
+      image_url: 'https://riomarrecife.com.br/recife/2021/08/combo-double-crunch.jpg',
       status: 'ativo'
     })
 
@@ -89,6 +96,7 @@ class ProdutoSeeder {
       descricao: 'Delicioso Combo 03.',
       categoria_id: catCombos.id,
       preco: 30.30,
+      image_url: 'https://riomarrecife.com.br/recife/2021/08/combo-double-crunch.jpg',
       status: 'ativo'
     })
 
@@ -97,6 +105,7 @@ class ProdutoSeeder {
       descricao: 'Delicioso Combo 04.',
       categoria_id: catCombos.id,
       preco: 30.40,
+      image_url: 'https://riomarrecife.com.br/recife/2021/08/combo-double-crunch.jpg',
       status: 'ativo'
     })
 
@@ -105,6 +114,7 @@ class ProdutoSeeder {
       descricao: 'Delicioso Combo 05.',
       categoria_id: catCombos.id,
       preco: 30.50,
+      image_url: 'https://riomarrecife.com.br/recife/2021/08/combo-double-crunch.jpg',
       status: 'ativo'
     })
 
@@ -119,6 +129,7 @@ class ProdutoSeeder {
       descricao: 'Delicioso Acompanhamentos 01.',
       categoria_id: catAcompanhamentos.id,
       preco: 10.10,
+      image_url: 'https://images-americanas.b2w.io/produtos/2945523484/imagens/embalagem-caixinha-para-batata-frita-grande-500un-vermelha/2945523484_1_large.jpg',
       status: 'ativo'
     })
 
@@ -127,6 +138,7 @@ class ProdutoSeeder {
       descricao: 'Delicioso Acompanhamentos 02.',
       categoria_id: catAcompanhamentos.id,
       preco: 10.20,
+      image_url: 'https://images-americanas.b2w.io/produtos/2945523484/imagens/embalagem-caixinha-para-batata-frita-grande-500un-vermelha/2945523484_1_large.jpg',
       status: 'ativo'
     })
 
@@ -135,6 +147,7 @@ class ProdutoSeeder {
       descricao: 'Delicioso Acompanhamentos 03.',
       categoria_id: catAcompanhamentos.id,
       preco: 10.30,
+      image_url: 'https://images-americanas.b2w.io/produtos/2945523484/imagens/embalagem-caixinha-para-batata-frita-grande-500un-vermelha/2945523484_1_large.jpg',
       status: 'ativo'
     })
 
@@ -143,6 +156,7 @@ class ProdutoSeeder {
       descricao: 'Delicioso Acompanhamentos 04.',
       categoria_id: catAcompanhamentos.id,
       preco: 10.40,
+      image_url: 'https://images-americanas.b2w.io/produtos/2945523484/imagens/embalagem-caixinha-para-batata-frita-grande-500un-vermelha/2945523484_1_large.jpg',
       status: 'ativo'
     })
 
@@ -151,6 +165,7 @@ class ProdutoSeeder {
       descricao: 'Delicioso Acompanhamentos 05.',
       categoria_id: catAcompanhamentos.id,
       preco: 10.50,
+      image_url: 'https://images-americanas.b2w.io/produtos/2945523484/imagens/embalagem-caixinha-para-batata-frita-grande-500un-vermelha/2945523484_1_large.jpg',
       status: 'ativo'
     })
 
@@ -165,6 +180,7 @@ class ProdutoSeeder {
       descricao: 'Deliciosa Bebida 01.',
       categoria_id: catBebidas.id,
       preco: 5.10,
+      image_url: 'https://thumbs.dreamstime.com/b/energy-drink-can-illustration-42139826.jpg',
       status: 'ativo'
     })
 
@@ -173,6 +189,7 @@ class ProdutoSeeder {
       descricao: 'Deliciosa Bebida 02.',
       categoria_id: catBebidas.id,
       preco: 5.20,
+      image_url: 'https://thumbs.dreamstime.com/b/energy-drink-can-illustration-42139826.jpg',
       status: 'ativo'
     })
 
@@ -181,6 +198,7 @@ class ProdutoSeeder {
       descricao: 'Deliciosa Bebida 03.',
       categoria_id: catBebidas.id,
       preco: 5.30,
+      image_url: 'https://thumbs.dreamstime.com/b/energy-drink-can-illustration-42139826.jpg',
       status: 'ativo'
     })
 
@@ -189,6 +207,7 @@ class ProdutoSeeder {
       descricao: 'Deliciosa Bebida 04.',
       categoria_id: catBebidas.id,
       preco: 5.40,
+      image_url: 'https://thumbs.dreamstime.com/b/energy-drink-can-illustration-42139826.jpg',
       status: 'ativo'
     })
 
@@ -197,6 +216,7 @@ class ProdutoSeeder {
       descricao: 'Deliciosa Bebida 05.',
       categoria_id: catBebidas.id,
       preco: 5.50,
+      image_url: 'https://thumbs.dreamstime.com/b/energy-drink-can-illustration-42139826.jpg',
       status: 'ativo'
     })
 
@@ -211,6 +231,7 @@ class ProdutoSeeder {
       descricao: 'Deliciosa Sobremesa 01.',
       categoria_id: catSobremesas.id,
       preco: 7.10,
+      image_url: 'https://images-americanas.b2w.io/produtos/4595601744/imagens/dlux-50-x-3-oz-mini-copos-de-sobremesa-com-colheres-square-tall-clear-plastic-parfait-aperitivo-cup-tigela-de-porcao-pequena-reutilizavel-para-sobremesas-de-festa-com-receita-ebook/4595601744_1_large.jpg',
       status: 'ativo'
     })
 
@@ -219,6 +240,7 @@ class ProdutoSeeder {
       descricao: 'Deliciosa Sobremesa 02.',
       categoria_id: catSobremesas.id,
       preco: 7.20,
+      image_url: 'https://images-americanas.b2w.io/produtos/4595601744/imagens/dlux-50-x-3-oz-mini-copos-de-sobremesa-com-colheres-square-tall-clear-plastic-parfait-aperitivo-cup-tigela-de-porcao-pequena-reutilizavel-para-sobremesas-de-festa-com-receita-ebook/4595601744_1_large.jpg',
       status: 'ativo'
     })
 
@@ -227,6 +249,7 @@ class ProdutoSeeder {
       descricao: 'Deliciosa Sobremesa 03.',
       categoria_id: catSobremesas.id,
       preco: 7.30,
+      image_url: 'https://images-americanas.b2w.io/produtos/4595601744/imagens/dlux-50-x-3-oz-mini-copos-de-sobremesa-com-colheres-square-tall-clear-plastic-parfait-aperitivo-cup-tigela-de-porcao-pequena-reutilizavel-para-sobremesas-de-festa-com-receita-ebook/4595601744_1_large.jpg',
       status: 'ativo'
     })
 
@@ -235,6 +258,7 @@ class ProdutoSeeder {
       descricao: 'Deliciosa Sobremesa 04.',
       categoria_id: catSobremesas.id,
       preco: 7.40,
+      image_url: 'https://images-americanas.b2w.io/produtos/4595601744/imagens/dlux-50-x-3-oz-mini-copos-de-sobremesa-com-colheres-square-tall-clear-plastic-parfait-aperitivo-cup-tigela-de-porcao-pequena-reutilizavel-para-sobremesas-de-festa-com-receita-ebook/4595601744_1_large.jpg',
       status: 'ativo'
     })
 
@@ -243,6 +267,7 @@ class ProdutoSeeder {
       descricao: 'Deliciosa Sobremesa 05.',
       categoria_id: catSobremesas.id,
       preco: 7.50,
+      image_url: 'https://images-americanas.b2w.io/produtos/4595601744/imagens/dlux-50-x-3-oz-mini-copos-de-sobremesa-com-colheres-square-tall-clear-plastic-parfait-aperitivo-cup-tigela-de-porcao-pequena-reutilizavel-para-sobremesas-de-festa-com-receita-ebook/4595601744_1_large.jpg',
       status: 'ativo'
     })
 

@@ -17,5 +17,6 @@ const Route = use('Route');
 Route.group(() => {
   Route.post('/register', 'AuthController.register');
   Route.post('/authenticate', 'AuthController.authenticate');
+  Route.delete('/revoke', 'AuthController.revoke').middleware(['auth:jwt']);
 
 }).prefix('/security');

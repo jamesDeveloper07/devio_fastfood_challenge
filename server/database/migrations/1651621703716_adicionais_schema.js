@@ -12,6 +12,7 @@ class AdicionaisSchema extends Schema {
       table.string('descricao', 500).notNullable()
       table.integer('categoria_id').notNullable().unsigned().references('id').inTable('common.categorias')
       table.decimal('preco', 12, 2).notNullable()
+      table.text('image_url')
       table
         .enu('status', ['ativo', 'inativo'])
         .notNullable()

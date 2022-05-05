@@ -9,6 +9,7 @@ class CategoriaSchema extends Schema {
       table.increments()
       table.string('nome', 200).notNullable()
       table.string('descricao', 500).notNullable()
+      table.text('image_url')
       table
         .enu('status', ['ativo', 'inativo'])
         .notNullable()
