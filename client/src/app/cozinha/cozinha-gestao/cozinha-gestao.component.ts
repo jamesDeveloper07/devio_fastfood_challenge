@@ -26,10 +26,13 @@ export class CozinhaGestaoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.atualizarPedidos();
+  }
+
+  atualizarPedidos(){
     this.pesquisarPedidosEmPreparo();
     this.pesquisarPedidosProntos();
   }
-
 
   pesquisarPedidosEmPreparo() {
     this.loading = true;
@@ -50,6 +53,51 @@ export class CozinhaGestaoComponent implements OnInit {
     this.pedidosService.consultarPedidos('pronto')
       .then(resultado => {
         this.pedidosProntos = resultado;
+      })
+      .catch(error => {
+        this.errorHandlerService.handle(error);
+      })
+      .finally(() => {
+        this.loading = false;
+      });
+  }
+
+  avancarPedido(pedido: Pedido) {
+    this.loading = true;
+    this.pedidosService.avancarPedido(pedido)
+      .then(resultado => {
+        this.messageService.add({ severity: 'success', summary: 'Sucesso!', detail: `Pedido ${resultado?.codigo} avançado com sucesso!` });
+        this.atualizarPedidos();
+      })
+      .catch(error => {
+        this.errorHandlerService.handle(error);
+      })
+      .finally(() => {
+        this.loading = false;
+      });
+  }
+
+  regredirPedido(pedido: Pedido) {
+    this.loading = true;
+    this.pedidosService.regredirPedido(pedido)
+      .then(resultado => {
+        this.messageService.add({ severity: 'success', summary: 'Sucesso!', detail: `Pedido ${resultado?.codigo} regredido com sucesso!` });
+        this.atualizarPedidos();
+      })
+      .catch(error => {
+        this.errorHandlerService.handle(error);
+      })
+      .finally(() => {
+        this.loading = false;
+      });
+  }
+
+  cancelarPedido(pedido: Pedido) {
+    this.loading = true;
+    this.pedidosService.cancelarPedido(pedido)
+      .then(resultado => {
+        this.messageService.add({ severity: 'success', summary: 'Sucesso!', detail: `Pedido ${resultado?.codigo} cancelado com sucesso!` });
+        this.atualizarPedidos();
       })
       .catch(error => {
         this.errorHandlerService.handle(error);

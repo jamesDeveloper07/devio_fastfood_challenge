@@ -31,6 +31,24 @@ export class PedidoCardComponent implements OnInit {
     };
   }
 
+  avancarPedido(pedido: any) {
+    console.log("AVANÇAR PEDIDO");
+    console.log(pedido);
+    this.cozinhaGestaoComponent.avancarPedido(pedido);
+  }
+
+  regredirPedido(pedido: any) {
+    console.log("REGREDIR PEDIDO");
+    console.log(pedido);
+    this.cozinhaGestaoComponent.regredirPedido(pedido);
+  }
+
+  cancelarPedido(pedido: any) {
+    console.log("CANCELAR PEDIDO");
+    console.log(pedido);
+    this.cozinhaGestaoComponent.cancelarPedido(pedido);
+  }
+
   // cliqueAction(categoria: any) {
   //   if (categoria && this.cozinhaGestaoComponent.categoriaSelecionada && (categoria.id == this.cozinhaGestaoComponent.categoriaSelecionada.id)) {
   //     this.cozinhaGestaoComponent.pesquisarProdutos(undefined);

@@ -138,15 +138,33 @@ export class PedidosService {
       })
   }
 
+  avancarPedido(pedido: Pedido): Promise<Pedido | undefined> {
+    return this.http.get<Pedido>(`${this.pedidoUrl}/${pedido.id}/avancar`)
+      .toPromise()
+      .then(response => response)
+  }
+
+  regredirPedido(pedido: Pedido): Promise<Pedido | undefined> {
+    return this.http.get<Pedido>(`${this.pedidoUrl}/${pedido.id}/regredir`)
+      .toPromise()
+      .then(response => response)
+  }
+
+  cancelarPedido(pedido: Pedido): Promise<Pedido | undefined> {
+    return this.http.get<Pedido>(`${this.pedidoUrl}/${pedido.id}/cancelar`)
+      .toPromise()
+      .then(response => response)
+  }
+
   atualizar(pedido: Pedido): Promise<Pedido | undefined> {
-    return this.http.put<Pedido>(`${this.pedidoUrl}/${pedido.codigo}`, pedido)
+    return this.http.put<Pedido>(`${this.pedidoUrl}/${pedido.id}`, pedido)
       .toPromise()
       .then(response => response)
   }
 
 
-  excluir(codigo: number): Promise<void | null> {
-    return this.http.delete(`${this.pedidoUrl}/${codigo}`)
+  excluir(id: number): Promise<void | null> {
+    return this.http.delete(`${this.pedidoUrl}/${id}`)
       .toPromise()
       .then(() => null)
   }
