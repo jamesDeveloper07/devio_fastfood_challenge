@@ -156,27 +156,43 @@ class PedidoController {
     const pedido = await Pedido.findOrFail(id)
 
     if (pedido) {
-      if (!pedido.paid_at) {
-        pedido.paid_at = new Date();
+      if (!pedido.ready_at) {
+        pedido.ready_at = new Date();
         pedido.updated_at = new Date();
         await pedido.save();
       } else {
-        if (!pedido.ready_at) {
-          pedido.ready_at = new Date();
+        if (!pedido.delivered_at) {
+          pedido.delivered_at = new Date();
           pedido.updated_at = new Date();
           await pedido.save();
-        } else {
-          if (!pedido.delivered_at) {
-            pedido.delivered_at = new Date();
-            pedido.updated_at = new Date();
-            await pedido.save();
-          }
         }
       }
     }
 
     return await Pedido.find(id)
 
+  }
+
+
+  async regredir({ request, params }) {
+    const { id } = params
+    const pedido = await Pedido.findOrFail(id)
+
+    if (pedido) {
+      if (pedido.delivered_at) {
+        pedido.delivered_at = null;
+        pedido.updated_at = new Date();
+        await pedido.save();
+      } else {
+        if (pedido.ready_at) {
+          pedido.ready_at = null;
+          pedido.updated_at = new Date();
+          await pedido.save();
+        }
+      }
+    }
+
+    return await Pedido.find(id)
   }
 
   async cancelar({ request, params }) {

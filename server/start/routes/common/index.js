@@ -33,8 +33,9 @@ Route.group(() => {
   Route.get('/pedido', 'Common/PedidoController.index');
   Route.get('/pedido/:id', 'Common/PedidoController.show');
   Route.post('/pedido', 'Common/PedidoController.store').middleware(['auth:jwt']);
-  Route.put('/pedido/:id/avancar', 'Common/PedidoController.avancar').middleware(['auth:jwt']);
-  Route.put('/pedido/:id/cancelar', 'Common/PedidoController.cancelar').middleware(['auth:jwt']);
-  Route.put('/pedido/:id/deletar', 'Common/PedidoController.deletar').middleware(['auth:jwt']);
+  Route.get('/pedido/:id/avancar', 'Common/PedidoController.avancar').middleware(['auth:jwt']);
+  Route.get('/pedido/:id/regredir', 'Common/PedidoController.regredir').middleware(['auth:jwt']);
+  Route.get('/pedido/:id/cancelar', 'Common/PedidoController.cancelar').middleware(['auth:jwt']);
+  Route.delete('/pedido/:id/deletar', 'Common/PedidoController.deletar').middleware(['auth:jwt']);
 
 }).prefix('/common');
