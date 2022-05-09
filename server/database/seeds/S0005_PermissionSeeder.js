@@ -27,34 +27,34 @@ class PermissionSeeder {
       const cozinheiro = await Role.findBy({ slug: 'cozinheiro' }, trx)
       const entregador = await Role.findBy({ slug: 'entregador' }, trx)
 
-      const permissionVerCategoria = await Permission.findOrCreate({ slug: 'ver_categoria' }, {
-        slug: 'ver_categoria',
-        name: 'Ver Categoria',
+      const permissionVerCategoria = await Permission.findOrCreate({ slug: 'ver_categorias' }, {
+        slug: 'ver_categorias',
+        name: 'Ver Categorias',
         description: 'Concede acesso a tela de consulta de categorias.'
       }, trx)
 
-      const permissionCadastrarCategoria = await Permission.findOrCreate({ slug: 'cadastrar_categoria' }, {
-        slug: 'cadastrar_categoria',
-        name: 'Cadastrar Categoria',
+      const permissionCadastrarCategoria = await Permission.findOrCreate({ slug: 'cadastrar_categorias' }, {
+        slug: 'cadastrar_categorias',
+        name: 'Cadastrar Categorias',
         description: 'Concede acesso a tela de cadastro de categorias.'
       }, trx)
 
 
-      const permissionVerPedido = await Permission.findOrCreate({ slug: 'ver_pedido' }, {
-        slug: 'ver_pedido',
-        name: 'Ver Pedido',
+      const permissionVerPedido = await Permission.findOrCreate({ slug: 'ver_pedidos' }, {
+        slug: 'ver_pedidos',
+        name: 'Ver Pedidos',
         description: 'Concede acesso a tela de consulta de pedidos.'
       }, trx)
 
-      const permissionCadastrarPedido = await Permission.findOrCreate({ slug: 'cadastrar_pedido' }, {
-        slug: 'cadastrar_pedido',
-        name: 'Cadastrar Pedido',
+      const permissionCadastrarPedido = await Permission.findOrCreate({ slug: 'cadastrar_pedidos' }, {
+        slug: 'cadastrar_pedidos',
+        name: 'Cadastrar Pedidos',
         description: 'Concede acesso a tela de cadastro de pedidos.'
       }, trx)
 
-      const permissionAtualizarPedido = await Permission.findOrCreate({ slug: 'atualizar_pedido' }, {
-        slug: 'atualizar_pedido',
-        name: 'Atualizar Pedido',
+      const permissionAtualizarPedido = await Permission.findOrCreate({ slug: 'atualizar_pedidos' }, {
+        slug: 'atualizar_pedidos',
+        name: 'Atualizar Pedidos',
         description: 'Concede acesso a tela de atualização de pedidos.'
       }, trx)
 

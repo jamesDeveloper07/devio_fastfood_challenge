@@ -27,7 +27,7 @@ class AdicionalSeeder {
       descricao: '10g',
       categoria_id: catHamburgueres.id,
       preco: 1.10,
-      image_url: 'https://www.bernardaoemcasa.com.br/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whatsapp_image_2021-04-08_at_08.14.31.jpeg',
+      image_url: 'assets/img/adicionais/001.png',
       status: 'ativo'
     })
 
@@ -36,7 +36,7 @@ class AdicionalSeeder {
       descricao: '20g',
       categoria_id: catHamburgueres.id,
       preco: 1.20,
-      image_url: 'https://www.bernardaoemcasa.com.br/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whatsapp_image_2021-04-08_at_08.14.31.jpeg',
+      image_url: 'assets/img/adicionais/002.png',
       status: 'ativo'
     })
 
@@ -45,7 +45,7 @@ class AdicionalSeeder {
       descricao: '30g',
       categoria_id: catHamburgueres.id,
       preco: 1.30,
-      image_url: 'https://www.bernardaoemcasa.com.br/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whatsapp_image_2021-04-08_at_08.14.31.jpeg',
+      image_url: 'assets/img/adicionais/003.png',
       status: 'ativo'
     })
 
@@ -54,7 +54,7 @@ class AdicionalSeeder {
       descricao: '40g',
       categoria_id: catHamburgueres.id,
       preco: 1.40,
-      image_url: 'https://www.bernardaoemcasa.com.br/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whatsapp_image_2021-04-08_at_08.14.31.jpeg',
+      image_url: 'assets/img/adicionais/004.png',
       status: 'ativo'
     })
 
@@ -63,7 +63,7 @@ class AdicionalSeeder {
       descricao: '50g.',
       categoria_id: catHamburgueres.id,
       preco: 1.50,
-      image_url: 'https://www.bernardaoemcasa.com.br/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whatsapp_image_2021-04-08_at_08.14.31.jpeg',
+      image_url: 'assets/img/adicionais/005.png',
       status: 'ativo'
     })
 
