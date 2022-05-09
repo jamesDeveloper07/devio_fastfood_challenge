@@ -1,27 +1,20 @@
 # FastfoodUi
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
+O projeto foi gerado com [Angular CLI](https://github.com/angular/angular-cli) versão 13.3.0.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Para executá-lo em sua máquina
 
-## Code scaffolding
+1 - Faça o clone do repositório;
+2 - Para instalar o Angular CLI se faz necessário ter o NodeJS instalado. Caso ainda não o tenha, acesse o site do Node.js e baixe a última versão destinada ao seu sistema operacional. (https://nodejs.org/) ;
+3 - Após a instalação do NodeJS, rode em um terminal a instrução: npm install -g @angular/cli ;
+4 - Se faz necessário instalar os módulos nodes, para isso, acesse a pasta client do repositório e execute a instrução: npm install
+3 - Para iniciar a aplicação, execute a instrução: ng serve
+4 - Se tudo ocorrer, a aplicação será executada por padrão no endereço http://localhost:4200/
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Usuários disponíveis para login
+email: adminisracao@fastfood.com.br
+senha: admin
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+email: cozinha@fastfood.com.br
+senha: cozin
