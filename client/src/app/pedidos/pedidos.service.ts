@@ -107,6 +107,24 @@ export class PedidosService {
       })
   }
 
+  consultarPedidos(status: string): Promise<any> {
+    let params = new HttpParams();
+
+    if (status) {
+      params = params.set('status', status)
+    }
+
+    return this.http.get(`${this.pedidoUrl}`, {
+      params
+    })
+      .toPromise()
+      .then((response: any) => {
+        console.log('RESPONSE PEDIDOS')
+        console.log({ response })
+        return response
+      })
+  }
+
   adicionar(pedido: Pedido): Promise<Pedido | undefined> {
     console.log('Ghegou no SERVICE ADICIONAR')
     console.log(pedido)

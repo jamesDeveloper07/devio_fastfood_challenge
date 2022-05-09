@@ -12,6 +12,8 @@ import { SegurancaModule } from './seguranca/seguranca.module';
 import { PedidosModule } from './pedidos/pedidos.module';
 
 import { PageNotFoundComponent } from './core/page-not-found.component';
+import { CozinhaModule } from './cozinha/cozinha.module';
+import { RetiradaModule } from './retirada/retirada.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'lancamentos', pathMatch: 'full' },
@@ -32,6 +34,8 @@ const routes: Routes = [
     CoreModule,
     SegurancaModule,
     PedidosModule,
+    CozinhaModule,
+    RetiradaModule,
     AppRoutingModule,
   ],
   exports: [

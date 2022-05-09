@@ -1,0 +1,18 @@
+<div class="card {{pedido.ready_at ? 'card-active': 'card-inactive'}}" [ngStyle]="getEstiloCartao()">
+
+  <div class="grid" style="margin-left: 5px; margin-right: 5px;">
+    <div class="col-6 md:col-8" style="display: flex; justify-content: start; align-items: center; font-size: clamp(12px,1vw,20px); color: black;">
+      <div>{{pedido.codigo}} - {{pedido.nome_cliente}}</div>
+    </div>
+
+    <div class="col-6 md:col-4" style="display: flex; justify-content: end; align-items: center;">
+        <div class="col-4" style="display: grid;">
+          <button pButton type="button" icon="pi pi-times" class="p-button-danger p-button-outlined" style="width: clamp(20px,4vw,40px); height: clamp(20px,4vw,40px);"></button>
+        </div>
+        <div class="col-4" style="display: grid;" *ngIf="!pedido.ready_at">
+          <button pButton type="button" icon="pi pi-check" class="p-button-success p-button-outlined" style="width: clamp(20px,4vw,40px); height: clamp(20px,4vw,40px);"></button>
+        </div>
+    </div>
+
+  </div>
+</div>
