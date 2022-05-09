@@ -19,6 +19,10 @@ class PedidosSchema extends Schema {
 
       table.integer('user_id').notNullable().unsigned().references('id').inTable('security.users')
 
+      table.decimal('valor_total', 12, 2).notNullable()
+      table.decimal('valor_pagamento', 12, 2).notNullable()
+      table.decimal('troco', 12, 2).notNullable()
+
       table.timestamp('created_at').defaultTo(this.fn.now()).notNullable()
       table.timestamp('ready_at')
       table.timestamp('paid_at')
