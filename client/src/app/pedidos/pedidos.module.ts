@@ -22,6 +22,7 @@ import { SharedModule } from '../shared/shared.module';
 import { PedidosRoutingModule } from './pedidos-routing.module';
 import { DialogModule } from 'primeng/dialog';
 import { PedidosCadastroComponent } from './pedidos-cadastro/pedidos-cadastro.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -48,6 +49,7 @@ import { PedidosCadastroComponent } from './pedidos-cadastro/pedidos-cadastro.co
     MessageModule,
     DialogModule,
     CheckboxModule,
+    FontAwesomeModule,
 
     SharedModule,
     PedidosRoutingModule

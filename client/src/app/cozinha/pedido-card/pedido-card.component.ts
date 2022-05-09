@@ -31,6 +31,17 @@ export class PedidoCardComponent implements OnInit {
     };
   }
 
+  getAdicionais(adicionais: Array<any>) {
+    let adicionaisText = 'Adicionais: ';
+    if (adicionais && adicionais.length > 0) {
+      for (const adicional of adicionais) {
+        adicionaisText = adicionaisText + `${adicional.adicional.nome}, `
+      }
+      adicionaisText = adicionaisText.substring(0, adicionaisText.length - 2) + '.';
+    }
+    return adicionaisText;
+  }
+
   avancarPedido(pedido: any) {
     console.log("AVANÇAR PEDIDO");
     console.log(pedido);

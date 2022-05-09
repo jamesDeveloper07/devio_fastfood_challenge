@@ -278,12 +278,12 @@
 
   <div class="grid">
     <div class="col-12">
-      <h1 style="margin-bottom: 5px;">Pagamento</h1>
+      <h1 style="margin-bottom: 5px;"><fa-icon [icon]="walletIcon" style="color: #125c13;"></fa-icon> Pagamento</h1>
     </div>
   </div>
 
   <!-- <div class="grid" style="margin-left: 0px; margin-right: 0px; margin-top: 30px; border: 2px solid #bbb" *ngIf="pedido && pedido.produtosPedido && pedido.produtosPedido.length > 0"> -->
-  <div class="grid" style="margin-left: 0px; margin-right: 0px; margin-top: 30px;"
+  <div class="grid" style="margin-left: 0px; margin-right: 0px;"
     *ngIf="pedido && pedido.produtos_pedido && pedido.produtos_pedido.length > 0">
 
     <!-- RESUMO DE COMPRA -->
@@ -368,7 +368,7 @@
 
           <div class="col-12 p-fluid" style="display: flex; border: 1px solid #bbb; border-radius: 5px;">
             <div class="col-5 card-body" style="display: flex; align-items: center;">
-              <h4 style="margin-top: 10px; margin-bottom: 10px;">{{formaPedido.formaPagamento.nome}}</h4>
+              <h3 style="margin-top: 10px; margin-bottom: 10px;"><fa-icon [icon]="getIconFormaPagamento(formaPedido)" style="color: #125c13;"></fa-icon>  {{formaPedido.formaPagamento.nome}}</h3>
             </div>
             <div class="col-5" style="display: flex; justify-content: center;">
               <p-inputNumber mode="currency" currency="BRL" name="valor_pago" placeholder="0,00"

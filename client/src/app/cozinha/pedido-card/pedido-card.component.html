@@ -14,10 +14,38 @@
       </div>
       <div class="col-4" style="display: grid;" *ngIf="!pedido.ready_at">
         <button pButton type="button" icon="pi pi-check" class="p-button-success p-button-outlined"
-          style="width: clamp(20px,4vw,40px); height: clamp(20px,4vw,40px);"
-          (click)="avancarPedido(pedido)"></button>
+          style="width: clamp(20px,4vw,40px); height: clamp(20px,4vw,40px);" (click)="avancarPedido(pedido)"></button>
       </div>
     </div>
 
   </div>
+
+  <div class="grid" style="margin-left: 5px; margin-right: 5px; margin-bottom: 15px; border: 2px solid #bbb; border-radius: 10px;" *ngFor="let produtoPedido of pedido.produtos">
+    <div class="col-2">
+      <div class="card" [ngStyle]="getEstiloCartao()">
+        <img src="{{produtoPedido.produto.image_url}}" class="card-img-top" width="90%" alt="...">
+      </div>
+    </div>
+
+    <div class="col-8" style="display: grid; justify-content: start; align-items: center;">
+      <div style="display: flex; align-items: center; height: clamp(15px,1.5vw,25px); font-size: clamp(12px,1vw,20px); color: black;">{{produtoPedido.quantidade}}X {{produtoPedido.produto.nome}}</div>
+    </div>
+
+    <div class="col-12" style="display: grid; justify-content: start; align-items: center;" *ngIf="produtoPedido.adicionais.length > 0">
+      <div style="display: flex; align-items: center; font-size: clamp(10px,1vw,15px); line-height: 1.5; color: rgb(90, 89, 89);" *ngIf="produtoPedido.adicionais.length > 0" >
+        {{getAdicionais(produtoPedido.adicionais)}}
+      </div>
+    </div>
+
+    <div class="col-12" style="display: grid; justify-content: start; align-items: center;" *ngIf="produtoPedido.observacao">
+      <div style="display: flex; align-items: center; font-size: clamp(10px,1vw,15px); line-height: 1.5; color: rgb(90, 89, 89);">
+        {{produtoPedido.observacao}}
+      </div>
+    </div>
+
+  </div>
+
+
+
+
 </div>

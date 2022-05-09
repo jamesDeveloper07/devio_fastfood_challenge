@@ -5,6 +5,8 @@ import { Pedido, ProdutoFiltro } from 'src/app/core/model';
 import { PedidosService } from '../pedidos.service';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { AuthService } from 'src/app/seguranca/auth.service';
+import { faWallet, faCreditCard, faMoneyBill1, faCircleDollarToSlot} from '@fortawesome/free-solid-svg-icons';
+import { faPix } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-pedidos-cadastro',
@@ -12,6 +14,11 @@ import { AuthService } from 'src/app/seguranca/auth.service';
   styleUrls: ['./pedidos-cadastro.component.css']
 })
 export class PedidosCadastroComponent implements OnInit {
+  walletIcon = faWallet;
+  cardIcon = faCreditCard;
+  moneyIcon = faMoneyBill1;
+  pixIcon = faPix;
+  cicleDollar = faCircleDollarToSlot;
 
   totalRegistros = 0;
   filtroProduto = new ProdutoFiltro();
@@ -60,6 +67,23 @@ export class PedidosCadastroComponent implements OnInit {
 
   get isEdicao() {
     return Boolean(this.pedido.id);
+  }
+
+  getIconFormaPagamento(formaPedido: FormaPagamentoPedido){
+    if(formaPedido.formaPagamento.nome === 'Dinheiro'){
+      return this.moneyIcon;
+    }
+
+    if(formaPedido.formaPagamento.nome === 'Crédito' || formaPedido.formaPagamento.nome === 'Débito' ){
+      return this.cardIcon;
+    }
+
+    if(formaPedido.formaPagamento.nome === 'Pix'){
+      return this.pixIcon;
+    }
+
+    return this.cicleDollar;
+
   }
 
   salvar() {

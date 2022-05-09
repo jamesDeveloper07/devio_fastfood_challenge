@@ -14,6 +14,7 @@ import { PedidosModule } from './pedidos/pedidos.module';
 import { PageNotFoundComponent } from './core/page-not-found.component';
 import { CozinhaModule } from './cozinha/cozinha.module';
 import { RetiradaModule } from './retirada/retirada.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 const routes: Routes = [
   { path: '', redirectTo: 'lancamentos', pathMatch: 'full' },
@@ -37,10 +38,12 @@ const routes: Routes = [
     CozinhaModule,
     RetiradaModule,
     AppRoutingModule,
+    FontAwesomeModule,
   ],
   exports: [
     HttpClientModule,
-    CoreModule
+    CoreModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
