@@ -13,9 +13,9 @@ O projeto foi gerado com [Angular CLI](https://github.com/angular/angular-cli) v
 
 4 - Se faz necessário instalar os módulos nodes, para isso, acesse a pasta client do repositório e execute a instrução: npm install
 
-3 - Para iniciar a aplicação, execute a instrução: ng serve 
+5 - Para iniciar a aplicação, execute a instrução: ng serve 
 
-4 - Se tudo ocorrer, a aplicação será executada por padrão no endereço http://localhost:4200/
+6 - Se tudo ocorrer, a aplicação será executada por padrão no endereço http://localhost:4200/
 
 
 ## Usuários disponíveis para login
