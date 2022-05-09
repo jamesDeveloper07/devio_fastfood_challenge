@@ -5,7 +5,7 @@ const Produto = use('App/Models/Common/Produto');
 class ProdutoController {
 
   async index({ request }) {
-    const { id, nome, categoria_id } = request.all();
+    const { id, nome, descricao, categoria_id } = request.all();
     const query = Produto.query()
 
     if (id) {
@@ -13,6 +13,14 @@ class ProdutoController {
     } else {
       if (nome) {
         query.where('nome', 'ilike', `%${nome}%`)
+      }else{
+        if(descricao){
+          if(Number(descricao)){
+            query.whereRaw(`(id = ${descricao} or nome ilike '%${descricao}%' or descricao ilike '%${descricao}%')`)
+          }else{
+            query.whereRaw(`(nome ilike '%${descricao}%' or descricao ilike '%${descricao}%')`)
+          }
+        }
       }
     }
 
