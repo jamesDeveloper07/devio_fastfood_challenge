@@ -8,11 +8,14 @@ const FormaPagamentoPedido = use('App/Models/Common/FormaPagamentoPedido');
 class PedidoController {
 
   async index({ request }) {
-    const { id, codigo, nome_cliente } = request.all();
+    const { id, codigo, nome_cliente, status } = request.all();
     const query = Pedido.query()
       .with('produtos.produto')
       .with('produtos.adicionais.adicional')
       .with('formasPagamento.formaPagamento')
+
+    query.where({ status: 'ativo' })
+    query.whereNull('deleted_at')
 
     if (id) {
       query.where({ id })
@@ -24,10 +27,28 @@ class PedidoController {
       if (nome_cliente) {
         query.where('nome_cliente', 'ilike', `%${nome_cliente}%`)
       }
-
     }
 
-    query.orderBy('id', 'asc')
+    if (status) {
+      if (status === 'preparando') {
+        query.whereNull('ready_at')
+        query.orderBy('created_at', 'asc')
+      } else {
+        if (status === 'pronto') {
+          query.whereNotNull('ready_at')
+          query.whereNull('delivered_at')
+          query.orderBy('ready_at', 'desc')
+        } else {
+          if (status === 'entregue') {
+            query.whereNotNull('delivered_at')
+            query.orderBy('delivered_at', 'desc')
+          }
+        }
+      }
+    } else {
+      query.orderBy('id', 'asc')
+    }
+
     return await query.fetch()
 
   }
@@ -56,7 +77,7 @@ class PedidoController {
       const user = await auth.getUser();
       dataPedido.user_id = user.id;
 
-      if (dataPedido.valor_total && dataPedido.valor_pagamento && (parseFloat(dataPedido.valor_total) <= parseFloat(dataPedido.valor_pagamento)) ) {
+      if (dataPedido.valor_total && dataPedido.valor_pagamento && (parseFloat(dataPedido.valor_total) <= parseFloat(dataPedido.valor_pagamento))) {
         dataPedido.paid_at = new Date()
       }
 
