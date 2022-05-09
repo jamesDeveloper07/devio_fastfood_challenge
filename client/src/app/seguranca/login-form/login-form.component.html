@@ -1,0 +1,36 @@
+<div class="conteiner" style="max-width: 400px; margin: auto">
+
+  <form #loginForm="ngForm" autocomplete="off" (ngSubmit)="logar(loginForm)">
+
+    <div class="grid">
+
+      <div class="col-12">
+        <h1>Login</h1>
+      </div>
+
+      <div class="col-12 p-fluid">
+        <input pInputText type="text" placeholder="E-mail" name="usuario" [(ngModel)]="login.usuario" #usuario="ngModel"
+          [required]="true">
+        <app-error-message [control]="usuario.control" [error]="'required'" [text]="'Informe o usuário.'">
+        </app-error-message>
+      </div>
+
+      <div class="col-12 p-fluid">
+        <input type="password" pPassword [feedback]="false" placeholder="Senha" name="senha" [(ngModel)]="login.senha" #senha="ngModel"
+          [required]="true">
+        <app-error-message [control]="senha.control" [error]="'required'" [text]="'Informe a senha.'">
+        </app-error-message>
+      </div>
+
+      <div class="col-12 p-fluid">
+        <button pButton type="submit" label="Login" class="p-button-success p-button-rounded" [disabled]="loginForm.invalid"></button>
+        <br>
+        <br>
+        <!-- <button pButton type="submit" label="Esqueci a Senha" (click)="esqueciSenha()"></button> -->
+      </div>
+
+    </div>
+
+  </form>
+
+</div>

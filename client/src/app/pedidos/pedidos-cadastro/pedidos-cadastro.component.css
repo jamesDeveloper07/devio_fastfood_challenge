@@ -1,0 +1,74 @@
+.p-button {
+  margin-right: .25em
+}
+
+.card-body {
+  color: black;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif
+}
+
+.card-produto-titulo {
+  font-size: 22px;
+  font-weight: bolder
+}
+
+.card-produto-descricao {
+  width: 80%;
+  margin-top: 20px;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.card-produto-quantidade {
+  margin-top: 20px;
+}
+
+.card-produto-valor {
+  font-size: 26px;
+  font-weight: bolder
+}
+
+.card-observacao-titulo {
+  font-size: 22px;
+  font-weight: bolder
+}
+
+.card-observacao-descricao {
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.card-adicional-body {
+  color: rgb(44, 44, 44);
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif
+}
+
+.card-adicional-titulo {
+  font-size: 18px;
+  font-weight: bolder
+}
+
+.card-adicional-descricao {
+  width: 80%;
+  margin-top: 8px;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.card-adicional-valor {
+  font-size: 20px;
+  font-weight: bolder
+}
+
+
+.card-resumo-principal {
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.card-resumo-adicional {
+  font-size: 18px;
+  line-height: 1.4;
+}

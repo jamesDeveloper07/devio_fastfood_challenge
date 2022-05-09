@@ -1,0 +1,15 @@
+<nav class="navbar">
+  <div class="conteiner">
+
+    <p-menubar [model]="hasUserLogado()? items : noItems" [style]="{
+      'background-color': '#125c13',
+      'border': 0
+    }">
+
+      <ng-template pTemplate="start">
+        <img src="assets/img/logo.png" style="width: clamp(120px,25%,150px);" class="mr-2">
+      </ng-template>
+
+    </p-menubar>
+  </div>
+</nav>

@@ -1,0 +1,450 @@
+<div class="conteiner" [hidden]="isTelaPagamento">
+
+  <div class="grid">
+    <div class="col-12">
+      <h1 style="margin-bottom: 5px;">Seja bem vindo!</h1>
+      <div class="col-12 md:col-6 p-fluid" style="padding-left: 0px;">
+        <input pInputText type="text" name="descricao" placeholder="O que você precisa?"
+          [(ngModel)]="filtroProduto.descricao" (keyup.enter)="onEnterPress()">
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORIAS -->
+
+  <div class="grid">
+    <div class="col-12 p-fluid">
+      <h3 style="margin-bottom: 5px;">Categorias</h3>
+      <h5 style="margin-top: 5px; margin-bottom: 5px;">Navegue por categorias</h5>
+    </div>
+
+    <div class="col-6 sm:col-4 md:col-3 lg:col-2" *ngFor="let c of categorias">
+      <app-categoria-card [categoria]="c"></app-categoria-card>
+    </div>
+
+  </div>
+
+  <!-- PRODUTOS -->
+
+  <div class="grid">
+    <div class="col-12 p-fluid">
+      <h3 style="margin-bottom: 5px;">Produtos</h3>
+      <h5 style="margin-top: 5px; margin-bottom: 5px;">Selecione um produto para adicionar ao seu pedido</h5>
+    </div>
+
+    <div class="col-6 sm:col-4 md:col-3 lg:col-2" *ngFor="let p of produtos">
+      <app-produto-card [produto]="p"></app-produto-card>
+    </div>
+
+  </div>
+
+  <!-- RESUMO PEDIDO -->
+
+  <!-- RESUMO E VALORES -->
+
+  <div class="grid" style="margin-left: 0px; margin-right: 0px; margin-top: 30px; border: 2px solid #bbb"
+    *ngIf="pedido && pedido.produtos_pedido && pedido.produtos_pedido.length > 0">
+
+    <div style="display: contents;" *ngFor="let prodsPed of pedido.produtos_pedido">
+      <div class="col-1 p-fluid">
+        <div class="card-body card-resumo-principal ">
+          <div>{{prodsPed.quantidade}}x</div>
+        </div>
+      </div>
+      <div class="col-7 p-fluid">
+        <div class="card-body card-resumo-principal ">
+          <div>{{prodsPed.produto.nome}}</div>
+        </div>
+        <div class="card-body card-resumo-adicional " *ngFor="let adic of prodsPed.adicionais_produto_pedido">
+          <div>{{adic.nome}}</div>
+        </div>
+      </div>
+      <div class="col-4 p-fluid">
+        <div class="card-body card-resumo-principal ">
+          <div>{{calcularPorQuantidade(prodsPed) | currency}}</div>
+        </div>
+        <div class="card-body card-resumo-adicional " *ngFor="let a of prodsPed.adicionais_produto_pedido">
+          <div>{{a.preco | currency}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 p-fluid">
+      <div class="card-body card-observacao-descricao ">
+        <hr style="border-top: 2px dashed #bbb;">
+      </div>
+    </div>
+
+    <div class="col-12 p-fluid">
+      <div class="card-body card-observacao-descricao ">
+        <div>Total Pedido</div>
+      </div>
+      <div class="card-body card-observacao-titulo ">
+        <div>{{calcularTotalPedido(pedido) | currency}}</div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="grid" style="margin-top: 30px; display: flex; flex-direction: row; justify-content: end;">
+    <div class="col-12 sm:col-6 md:col-4 p-fluid">
+      <button pButton type="button" label="Cancelar" class="p-button-success p-button-outlined p-button-rounded"
+        (click)="cancelarPedido()" [disabled]="isButtonFinalizarPedidoDisable()"></button>
+    </div>
+    <div class="col-12 sm:col-6 md:col-4 p-fluid">
+      <button pButton type="button" label="Finalizar" class="p-button-success p-button-rounded"
+        (click)="iniciarPagamento()" [disabled]="isButtonFinalizarPedidoDisable()"></button>
+    </div>
+  </div>
+
+
+
+
+  <!-- MODAL DE REVISÂO DE PEDIDO  -->
+
+  <p-dialog [modal]="true" [(visible)]="displayModal" [breakpoints]="{'900px': '90vw'}" [style]="{width: '60vw'}">
+    <p-header>
+      <h1 style="margin-top: -10px;">Revise seu pedido!</h1>
+    </p-header>
+
+
+    <!-- DETALHE DO PRODUTO -->
+
+    <div class="grid" style="margin-top: 0px;">
+
+      <div class="col-3">
+        <div class="card" [ngStyle]="getEstiloCartao()">
+          <img src="{{produtoPedido.produto.image_url}}" class="card-img-top" width="90%" alt="...">
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="card-body card-produto-titulo ">
+          <div>{{produtoPedido.produto.nome}}</div>
+        </div>
+        <div class="card-body card-produto-descricao ">
+          <div>{{produtoPedido.produto.descricao}}</div>
+        </div>
+
+        <div class="card-body card-produto-quantidade ">
+          <p-inputNumber [(ngModel)]="produtoPedido.quantidade" [min]="1" [max]="100" [showButtons]="true"
+            buttonLayout="horizontal" spinnerMode="horizontal" decrementButtonClass="p-button-success"
+            incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"
+            [inputStyle]="{'width': '50px'}"></p-inputNumber>
+        </div>
+
+      </div>
+
+      <div class="col-3">
+        <div class="card-body card-produto-valor">
+          <div>{{produtoPedido.produto.preco | currency}}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADICIONAIS -->
+
+    <div class="grid" style="margin-top: 30px;" *ngIf="adicionais.length > 0">
+
+      <div class="col-12 p-fluid">
+        <div class="card-body card-observacao-titulo ">
+          <div>Adicionais</div>
+        </div>
+        <div class="card-body card-observacao-descricao ">
+          <div>Selecione os ingredientes que você quer adicionar a mais no seu lanche.</div>
+        </div>
+      </div>
+
+      <div class="grid" style="margin-top: 0px;" *ngFor="let adic of adicionais">
+
+        <div class="col-1">
+        </div>
+
+        <div class="col-1">
+          <div class="card" [ngStyle]="getEstiloCartao()">
+            <img src="{{adic.image_url}}" class="card-img-top" width="90%" alt="...">
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="card-adicional-body card-adicional-titulo ">
+            <div>{{adic.nome}}</div>
+          </div>
+          <div class="card-adicional-body card-adicional-descricao ">
+            <div>{{adic.descricao}}</div>
+          </div>
+        </div>
+
+        <div class="col-3">
+          <div class="card-adicional-body card-adicional-valor">
+            <div>{{adic.preco | currency}}</div>
+          </div>
+        </div>
+
+        <div class="col-1">
+          <p-checkbox name="add-adiciocal" [value]="adic" [(ngModel)]="produtoPedido.adicionais_produto_pedido">
+          </p-checkbox>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- OBSERVACAO -->
+
+    <div class="grid" style="margin-top: 30px;">
+
+      <div class="col-12 p-fluid">
+        <div class="card-body card-observacao-titulo ">
+          <div>Observação</div>
+        </div>
+      </div>
+
+      <div class="col-12 p-fluid">
+        <textarea pInputTextarea rows="3" name="observacao" placeholder="Adicione uma observação ao pedido"
+          [(ngModel)]="produtoPedido.observacao"></textarea>
+      </div>
+
+    </div>
+
+    <!-- RESUMO E VALORES -->
+
+    <div class="grid" style="margin-left: 0px; margin-right: 0px; margin-top: 30px; border: 2px solid #bbb">
+
+      <div class="col-1 p-fluid">
+        <div class="card-body card-resumo-principal ">
+          <div>{{produtoPedido.quantidade}}x</div>
+        </div>
+      </div>
+      <div class="col-7 p-fluid">
+        <div class="card-body card-resumo-principal ">
+          <div>{{produtoPedido.produto.nome}}</div>
+        </div>
+        <div class="card-body card-resumo-adicional " *ngFor="let a of produtoPedido.adicionais_produto_pedido">
+          <div>{{a.nome}}</div>
+        </div>
+      </div>
+      <div class="col-4 p-fluid">
+        <div class="card-body card-resumo-principal ">
+          <div>{{calcularPorQuantidade(produtoPedido) | currency}}</div>
+        </div>
+        <div class="card-body card-resumo-adicional " *ngFor="let a of produtoPedido.adicionais_produto_pedido">
+          <div>{{a.preco | currency}}</div>
+        </div>
+      </div>
+
+      <div class="col-12 p-fluid">
+        <div class="card-body card-observacao-descricao ">
+          <hr style="border-top: 2px dashed #bbb;">
+        </div>
+      </div>
+
+      <div class="col-12 p-fluid">
+        <div class="card-body card-observacao-descricao ">
+          <div>Total Pedido</div>
+        </div>
+        <div class="card-body card-observacao-titulo ">
+          <div>{{calcularTotalComAdicionais(produtoPedido) | currency}}</div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- BOTÕES -->
+
+    <p-footer>
+      <div class="grid" style="display: inline-flex; margin-top: 20px;">
+        <button pButton type="button" label="Cancelar" class="p-button-secondary p-button-outlined p-button-rounded"
+          (click)="cancelarAdicaoProdutoPedido(produtoPedido)"></button>
+        <button pButton type="button" label="Continuar Adicionando"
+          class="p-button-success p-button-outlined p-button-rounded"
+          (click)="continuarAdicionando(produtoPedido)"></button>
+        <button pButton type="button" label="Finalizar Pedido" class="p-button-success p-button-rounded"
+        (click)="continuarAdicionando(produtoPedido); iniciarPagamento()"></button>
+      </div>
+    </p-footer>
+
+  </p-dialog>
+
+</div>
+
+
+<!-- CONTEINER PAGAMENTO -->
+
+<div class="conteiner" [hidden]="!isTelaPagamento">
+
+  <div class="grid">
+    <div class="col-12">
+      <h1 style="margin-bottom: 5px;">Pagamento</h1>
+    </div>
+  </div>
+
+  <!-- <div class="grid" style="margin-left: 0px; margin-right: 0px; margin-top: 30px; border: 2px solid #bbb" *ngIf="pedido && pedido.produtosPedido && pedido.produtosPedido.length > 0"> -->
+  <div class="grid" style="margin-left: 0px; margin-right: 0px; margin-top: 30px;"
+    *ngIf="pedido && pedido.produtos_pedido && pedido.produtos_pedido.length > 0">
+
+    <!-- RESUMO DE COMPRA -->
+
+    <!-- <div class="col-12 md:col-6 p-fluid" style="margin-left: 0px; margin-right: 0px; margin-top: 30px; border: 2px solid #bbb"> -->
+    <div class="col-12 md:col-6 p-fluid" style="margin-left: 0px; margin-right: 0px; margin-top: 30px;">
+
+      <h3 style="margin-top: 0px; margin-bottom: 0px;">Resumo da compra</h3>
+
+      <div class="col-12" style="margin-left: 0px; margin-right: 0px; margin-top: 10px; border: 2px solid #bbb">
+
+        <div style="display: flex;" *ngFor="let prodsPed of pedido.produtos_pedido">
+          <div class="col-1 p-fluid">
+            <div class="card-body card-resumo-principal ">
+              <div>{{prodsPed.quantidade}}x</div>
+            </div>
+          </div>
+          <div class="col-7 p-fluid">
+            <div class="card-body card-resumo-principal ">
+              <div>{{prodsPed.produto.nome}}</div>
+            </div>
+            <div class="card-body card-resumo-adicional " *ngFor="let adic of prodsPed.adicionais_produto_pedido">
+              <div>{{adic.nome}}</div>
+            </div>
+          </div>
+          <div class="col-4 p-fluid">
+            <div class="card-body card-resumo-principal ">
+              <div>{{calcularPorQuantidade(prodsPed) | currency}}</div>
+            </div>
+            <div class="card-body card-resumo-adicional " *ngFor="let a of prodsPed.adicionais_produto_pedido">
+              <div>{{a.preco | currency}}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 p-fluid">
+          <div class="card-body card-observacao-descricao ">
+            <hr style="border-top: 2px dashed #bbb;">
+          </div>
+        </div>
+
+        <div class="col-12 p-fluid" style="display: flex;">
+          <div class="col-8 card-body card-observacao-descricao ">
+            <div>Total do Pedido:</div>
+          </div>
+          <div class="col-4 card-body card-observacao-titulo ">
+            <div>{{calcularTotalPedido(pedido) | currency}}</div>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="col-12"
+        style="display: flex; margin-left: 0px; margin-right: 0px; margin-top: 10px; border: 2px solid #bbb">
+
+        <div class="col-8 p-fluid" style="padding-left: 0px;">
+          <h3 style="margin-top: 0px; margin-bottom: 2px;">Nome do cliente</h3>
+          <input pInputText type="text" name="nome_cliente" placeholder="Primeiro nome"
+            [(ngModel)]="pedido.nome_cliente">
+        </div>
+
+        <div class="col-4 p-fluid" style="padding-left: 0px;">
+          <h3 style="margin-top: 0px; margin-bottom: 2px;">Código</h3>
+          <input pInputText type="number" name="codigo" placeholder="000" [(ngModel)]="pedido.codigo">
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- FORMA PAGAMENTO  -->
+
+    <!-- <div class="col-12 md:col-6 p-fluid" style="margin-left: 0px; margin-right: 0px; margin-top: 30px; border: 2px solid #bbb"> -->
+    <div class="col-12 md:col-6 p-fluid" style="margin-left: 0px; margin-right: 0px; margin-top: 30px;">
+
+      <h3 style="margin-top: 0px; margin-bottom: 0px;">Selecione Forma de Pagamento</h3>
+
+      <div class="col-12" style="margin-left: 0px; margin-right: 0px; margin-top: 10px; border: 2px solid #bbb">
+
+        <div style="margin-bottom: 10px;" *ngFor="let formaPedido of formasPagamentoPedido">
+
+          <div class="col-12 p-fluid" style="display: flex; border: 1px solid #bbb; border-radius: 5px;">
+            <div class="col-5 card-body" style="display: flex; align-items: center;">
+              <h4 style="margin-top: 10px; margin-bottom: 10px;">{{formaPedido.formaPagamento.nome}}</h4>
+            </div>
+            <div class="col-5" style="display: flex; justify-content: center;">
+              <p-inputNumber mode="currency" currency="BRL" name="valor_pago" placeholder="0,00"
+                [(ngModel)]="formaPedido.valor" (ngModelChange)="calcularPagamento()"
+                *ngIf="isFormaSelecionada(formaPedido)"></p-inputNumber>
+            </div>
+            <div class="col-2" style="display: flex; justify-content: center;">
+              <p-checkbox name="add-forma" [value]="formaPedido" [(ngModel)]="formasPagamentoUtilizadas"
+                (onChange)="calcularPagamento()"></p-checkbox>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-12"
+          style="display: flex; margin-left: 0px; margin-right: 0px; margin-top: 10px; border: 2px solid #bbb">
+
+          <div class="col-6 p-fluid" style="padding-left: 0px;">
+            <h5 style="margin-top: 0px; margin-bottom: 2px;">Valor Restante</h5>
+            <p-inputNumber mode="currency" currency="BRL" name="valorPendente" [readonly]="true" placeholder="0,00"
+              [(ngModel)]="valorPendente"></p-inputNumber>
+          </div>
+
+          <div class="col-6 p-fluid" style="padding-left: 0px;">
+            <h5 style="margin-top: 0px; margin-bottom: 2px;">Troco</h5>
+            <p-inputNumber mode="currency" currency="BRL" name="valorTroco" [readonly]="true" placeholder="0,00"
+              [(ngModel)]="valorTroco"></p-inputNumber>
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- BOTOES -->
+  <div class="grid" style="margin-top: 30px; display: flex; flex-direction: row; justify-content: end;">
+    <div class="col-12 sm:col-6 md:col-4 p-fluid">
+      <button pButton type="button" label="Voltar" class="p-button-success p-button-outlined p-button-rounded"
+        (click)="cancelarPagamento()"></button>
+    </div>
+    <div class="col-12 sm:col-6 md:col-4 p-fluid">
+      <button pButton type="button" label="Finalizar Pedido" class="p-button-success p-button-rounded"
+        (click)="finalizarPagamento()" [disabled]="isButtonFinalizarPagamentoDisable()"></button>
+    </div>
+  </div>
+
+
+  <!-- MODAL SUCCESS PAGAMENTO  -->
+
+  <p-dialog [modal]="true" [(visible)]="displayModalSucessoPagamento"
+    [breakpoints]="{'1260px': '40vw', '980px': '60vw', '640px': '75vw', '475px': '100vw'}" [style]="{width: '35vw'}"
+    (onHide)="reiniciarTelaPedido()">
+
+    <div class="grid" style="margin-top: -10px;">
+
+      <div class="col-12" style="display: flex; justify-content: center;">
+        <img class="img-responsive" src="assets/img/pagamento_success.png" width="95%">
+      </div>
+
+      <div class="col-12"
+        style="display: flex; justify-content: center; text-align: center; font-size: x-large; font-weight: 700;">
+        Pedido finalizado com sucesso!
+      </div>
+
+      <div class="col-12"
+        style="display: flex; justify-content: center; text-align: center; font-size: large; font-weight: 400;">
+        O pedido foi encaminhado para a cozinha.
+      </div>
+
+    </div>
+
+  </p-dialog>
+
+</div>

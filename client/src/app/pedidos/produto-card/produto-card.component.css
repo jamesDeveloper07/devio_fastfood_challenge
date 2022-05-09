@@ -1,0 +1,36 @@
+.card-body {
+  color: black;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif
+}
+
+.card-titulo {
+  font-size: 16px;
+  font-weight: bolder
+}
+
+.card-descricao {
+  font-size: 12px;
+}
+
+.card-valor {
+  font-size: 18px;
+  font-weight: bolder;
+  margin-top: 10px;
+}
+
+.card-action {
+  text-decoration: none;
+}
+
+.card:hover {
+  background-color: lightgreen;
+}
+
+.card-active {
+  background-color: lightgreen;
+}
+
+.card-inactive {
+  background-color: none;
+}

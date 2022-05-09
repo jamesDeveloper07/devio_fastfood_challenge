@@ -1,0 +1,14 @@
+<a class="card-action" (click)="cliqueAction(produto)">
+  <div class="card {{isActive(produto) ? 'card-active': 'card-inactive'}}" [ngStyle]="getEstiloCartao()">
+    <img src="{{produto.image_url}}" class="card-img-top" width="90%" alt="...">
+    <div class="card-body card-titulo ">
+      <div>{{produto.nome}}</div>
+    </div>
+    <div class="card-body card-descricao ">
+      <div>{{getResumoDescricao(produto.descricao)}}</div>
+    </div>
+    <div class="card-body card-valor">
+      <div>{{produto.preco | currency}}</div>
+    </div>
+  </div>
+</a>

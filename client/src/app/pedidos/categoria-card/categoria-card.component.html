@@ -1,0 +1,8 @@
+<a class="card-action" (click)="cliqueAction(categoria)">
+  <div class="card {{isActive(categoria) ? 'card-active': 'card-inactive'}}" [ngStyle]="getEstiloCartao()">
+    <img src="{{categoria.image_url}}" class="card-img-top" width="90%" alt="...">
+    <div class="card-body">
+      <h5>{{categoria.nome}}</h5>
+    </div>
+  </div>
+</a>
