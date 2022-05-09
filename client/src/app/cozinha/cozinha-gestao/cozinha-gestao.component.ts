@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/seguranca/auth.service';
 })
 export class CozinhaGestaoComponent implements OnInit {
   loading: boolean = false;
+  refreshPedidos: any;
 
   pedidosEmPreparo: Array<Pedido> = [];
   pedidosProntos: Array<Pedido> = [];
@@ -26,10 +27,24 @@ export class CozinhaGestaoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
     this.atualizarPedidos();
+
+    //remover após a implementação do websocket
+    this.refreshPedidos = setInterval(() => {
+      this.atualizarPedidos();
+    }, 10000);
+
   }
 
-  atualizarPedidos(){
+  ngOnDestroy() {
+    console.log('DESTROY COZINHA')
+    if (this.refreshPedidos) {
+      clearInterval(this.refreshPedidos);
+    }
+  }
+
+  atualizarPedidos() {
     this.pesquisarPedidosEmPreparo();
     this.pesquisarPedidosProntos();
   }

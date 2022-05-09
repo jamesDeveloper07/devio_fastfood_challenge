@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/seguranca/auth.service';
 })
 export class RetiradaViewComponent implements OnInit {
   loading: boolean = false;
+  refreshPedidos: any;
 
   pedidosEmPreparo: Array<Pedido> = [];
   pedidosProntos: Array<Pedido> = [];
@@ -26,6 +27,22 @@ export class RetiradaViewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.atualizarPedidos();
+
+    //remover após a implementação do websocket
+    this.refreshPedidos = setInterval(() => {
+      this.atualizarPedidos();
+    }, 10000);
+  }
+
+  ngOnDestroy() {
+    console.log('DESTROY RETIRADAS')
+    if (this.refreshPedidos) {
+      clearInterval(this.refreshPedidos);
+    }
+  }
+
+  atualizarPedidos() {
     this.pesquisarPedidosEmPreparo();
     this.pesquisarPedidosProntos();
   }
