@@ -21,5 +21,6 @@ const { Ignitor } = require('@adonisjs/ignitor')
 
 new Ignitor(require('@adonisjs/fold'))
   .appRoot(__dirname)
+  .wsServer() // inicializando o servidor websocket
   .fireHttpServer()
   .catch(console.error)
