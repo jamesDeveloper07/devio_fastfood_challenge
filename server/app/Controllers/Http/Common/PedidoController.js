@@ -49,12 +49,16 @@ class PedidoController {
 
     try {
 
-      const dataPedido = request.only(['codigo', 'nome_cliente', 'contato_cliente', 'status'])
+      const dataPedido = request.only(['codigo', 'nome_cliente', 'contato_cliente', 'status', 'valor_total', 'valor_pagamento', 'troco'])
       const dataProdutos = request.only(['produtos_pedido'])
       const dataFormas = request.only(['formas_pagamento_pedido'])
 
       const user = await auth.getUser();
       dataPedido.user_id = user.id;
+
+      if (dataPedido.valor_total && dataPedido.valor_pagamento && (parseFloat(dataPedido.valor_total) <= parseFloat(dataPedido.valor_pagamento)) ) {
+        dataPedido.paid_at = new Date()
+      }
 
       const pedido = await Pedido.create(dataPedido)
 
@@ -74,6 +78,12 @@ class PedidoController {
 
         for (let adicional of adicionais_produto_pedido) {
           adicional.produto_pedido_id = produto.id;
+          //próximo IF é remédio para resolver falha no envio do front
+          //(remover após correção)
+          if (!adicional.adicional_id && adicional.id) {
+            adicional.adicional_id = adicional.id
+          }
+
           adicional = await AdicionalProdutoPedido.create({
             produto_pedido_id: adicional.produto_pedido_id,
             adicional_id: adicional.adicional_id
@@ -88,8 +98,7 @@ class PedidoController {
         forma = await FormaPagamentoPedido.create({
           pedido_id: forma.pedido_id,
           forma_pagamento_id: forma.forma_pagamento_id,
-          valor: forma.valor,
-          troco: forma.troco
+          valor: forma.valor
         })
       }
 
